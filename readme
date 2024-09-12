@@ -1,0 +1,70 @@
+Sistema de Gerenciamento de Biblioteca
+Este é um projeto de banco de dados para gerenciar uma biblioteca. O projeto inclui a criação de tabelas, inserção de dados e consultas relacionadas a autores, livros e empréstimos. As operações de atualização e exclusão também estão implementadas para facilitar a manutenção dos dados.
+
+Estrutura do Projeto
+O projeto cria um banco de dados chamado Biblioteca que contém três tabelas principais:
+
+Autores: Armazena informações sobre os autores, como nome e nacionalidade.
+Livros: Armazena informações sobre os livros, incluindo título, autor, ano de publicação e gênero.
+Empréstimos: Registra os empréstimos de livros, com detalhes sobre a data de empréstimo, data de devolução (se aplicável) e o nome do usuário.
+Requisitos
+MySQL ou MariaDB
+Estrutura das Tabelas
+Autores:
+
+AutorID: Identificador único do autor (Primary Key).
+Nome: Nome do autor (Obrigatório).
+Nacionalidade: Nacionalidade do autor.
+Livros:
+
+LivroID: Identificador único do livro (Primary Key).
+Titulo: Título do livro (Obrigatório).
+AutorID: Referência ao ID do autor (Foreign Key).
+AnoPublicacao: Ano de publicação do livro.
+Genero: Gênero do livro.
+Empréstimos:
+
+EmprestimoID: Identificador único do empréstimo (Primary Key).
+LivroID: Referência ao ID do livro (Foreign Key).
+DataEmprestimo: Data em que o livro foi emprestado (Obrigatório).
+DataDevolucao: Data de devolução do livro (Pode ser nulo).
+NomeUsuario: Nome do usuário que fez o empréstimo (Obrigatório).
+Como Executar
+Certifique-se de que o MySQL ou MariaDB esteja instalado e em execução em sua máquina.
+Abra o terminal e conecte-se ao MySQL utilizando o comando:
+
+mysql -u [usuário] -p
+Execute o script SQL no seu ambiente MySQL para criar e popular o banco de dados:
+
+source caminho/do/seu/arquivo.sql;
+Funcionalidades
+Inserção de Autores: Adiciona novos autores à tabela Autores.
+Inserção de Livros: Adiciona novos livros com referência ao autor.
+Inserção de Empréstimos: Registra o empréstimo de um livro para um usuário.
+Consultas:
+Listagem de todos os livros e seus respectivos autores.
+Listagem de empréstimos ainda em aberto (não devolvidos).
+Atualização de Dados: Possibilidade de atualizar a data de devolução de um empréstimo.
+Exclusão de Dados: Permite excluir livros e seus registros de empréstimos associados.
+Exemplo de Consultas
+Listar todos os livros com os nomes de seus autores:
+
+
+SELECT Livros.Titulo, Autores.Nome AS Autor, Livros.AnoPublicacao
+FROM Livros
+JOIN Autores ON Livros.AutorID = Autores.AutorID;
+Listar os empréstimos em aberto:
+
+
+SELECT Emprestimos.EmprestimoID, Livros.Titulo, Emprestimos.DataEmprestimo, Emprestimos.NomeUsuario
+FROM Emprestimos
+JOIN Livros ON Emprestimos.LivroID = Livros.LivroID
+WHERE Emprestimos.DataDevolucao IS NULL;
+Atualizar a data de devolução de um empréstimo:
+
+
+UPDATE Emprestimos
+SET DataDevolucao = '2024-08-22'
+WHERE EmprestimoID = 1;
+Licença
+Este projeto é de livre uso para fins educacionais.
