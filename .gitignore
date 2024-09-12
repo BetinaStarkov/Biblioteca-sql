@@ -1,0 +1,30 @@
+# Arquivos de configuração de ambiente
+.env
+
+# Pastas do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos de log
+*.log
+
+# Arquivos de banco de dados temporários
+*.sql.bak
+*.sql-journal
+
+# Pastas ocultas do sistema
+*.idea/
+*.vscode/
+
+# Arquivos binários
+*.exe
+*.dll
+*.so
+
+# Diretórios de build
+/build/
+dist/
+
+# Arquivos temporários
+*.tmp
+*.swp
